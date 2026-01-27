@@ -1,0 +1,1355 @@
+* {
+  box-sizing: border-box;
+  line-height: normal;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: normal;
+  font-style: normal;
+  counter-reset: work-item__heading; /* Khi tải body sẽ tạo Biến đếm work-item__heading = 0  */
+}
+:root {
+  --content-width: 1170;
+  --primary-color: #7264d6;
+  --white-color: #fff;
+}
+/* ======= common ===== */
+a {
+  text-decoration: none;
+}
+button {
+  border: none;
+}
+a,
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+.mt-160 {
+  margin-top: 160px;
+}
+.section-wrapper {
+  width: calc(var(--content-width) * 1px);
+  max-width: calc(100% - 48px);
+  margin: 0 auto;
+}
+.section-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.section-content {
+  width: 470px;
+}
+.section-heading {
+  color: #212832;
+  font-weight: 700;
+  /* background: orange; */
+}
+
+.section-heading1 {
+  font-size: 6rem;
+  line-height: 7rem; /* 116.667% */
+}
+.section-heading2 {
+  font-size: 4rem;
+  line-height: 5rem; /* 125% */
+}
+.heading3 {
+  color: #212832;
+  font-weight: 600;
+  font-size: 1.8rem;
+  line-height: 3rem; /* 166.667% */
+}
+.desc {
+  color: #696d76;
+  font-weight: 400;
+}
+.section-desc {
+  font-size: 1.8rem;
+  line-height: 3rem; /* 166.667% */
+  /* 2 section dec đầu 20 , các section desc sau 18  */
+  margin-top: 20px;
+}
+.section-desc--small {
+  font-size: 1.6rem;
+  line-height: 2.8rem; /* 175% */
+  margin-top: 18px;
+}
+.article-desc {
+  font-size: 1.6rem;
+  line-height: 2.8rem; /* 175% */
+  color: #696d76;
+  font-weight: 400;
+}
+.section-label {
+  content: "Digital Smart Wallet";
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #696d77;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.8rem; /* 175% */
+  padding-left: 30px;
+  position: relative;
+  /* cũng có thể bọc section-label vào 1 thẻ div container
+  rồi set dflex align center sẽ căn giữa nhưng before sẽ là của container
+   */
+}
+.section-label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  background: #696d77;
+}
+.btn {
+  color: var(--white-color);
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 2.8rem; /* 175% */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #212832;
+  /* height: 58px;
+  width: 149px; */
+  /* min-width: 113px; */
+  /* padding: 15px 30px; */
+  white-space: nowrap;
+}
+.btn--small {
+  padding: 12px 18px;
+}
+.btn--medium {
+  padding: 12px 28px;
+}
+.btn--large {
+  padding: 15px 30px;
+}
+
+.form__email-input {
+  color: #696d76;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.8rem; /* 175% */
+}
+/* subcribe and  */
+.submit-btn {
+  border-radius: 8px;
+  background: var(--primary-color);
+}
+.subcribe-btn {
+  background: var(--primary-color);
+}
+/* chỉ disable khi input đã nhập nhưng sai pattern, còn nếu chưa nhập thì vẫn cho phép  */
+.form:has(:invalid:not(:placeholder-shown)) .submit-btn {
+  pointer-events: none;
+  opacity: 0.8;
+}
+.input-text {
+  position: relative;
+}
+.hero__email-label {
+  top: 0;
+  left: 0;
+  /* left: 23px; */
+}
+.email-label {
+  position: absolute;
+  pointer-events: none;
+  color: #696d76;
+  font-size: 1.6rem;
+  /* font-weight: 400; */
+  line-height: 2.8rem; /* 175% */
+  /* transition */
+  background-color: var(--white-color);
+  transition: transform, color, text-shadow;
+  transition-duration: 0.5s;
+  pointer-events: none;
+}
+.input-text .form__email-input:focus + .email-label {
+  color: #333;
+}
+.input-text .form__email-input:focus + .hero__email-label,
+.input-text .form__email-input:not(:placeholder-shown) + .hero__email-label {
+  translate: 0 calc((-23 - (28 / 2)) * 1px);
+  /* không dùng font-weight gây lệch vì dày chữ */
+  /* trên dưới , trái phải */
+  text-shadow:
+    -0.001px -0.001px currentColor,
+    0.001px 0.001px currentColor;
+}
+/* ====== end common ======= */
+/* ========== header ========== */
+.header__inner {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin-top: 42px;
+}
+.navbar__list {
+  display: flex;
+  /* gap: 48px; */
+  margin-left: 70px;
+}
+.nav__link {
+  color: #696d76;
+  line-height: 2.8rem; /* 175% */
+  padding: 4px 24px;
+  position: relative;
+}
+.nav__link:hover {
+  color: #212832;
+  font-weight: 600;
+}
+.nav__link::after {
+  content: "";
+  position: absolute;
+  border-radius: 0.5px;
+  background: var(--primary-color);
+  display: none;
+  width: calc(100% - 48px);
+  height: 1px;
+  bottom: 0;
+  left: 24px;
+  opacity: 0;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+.nav__link:hover::after {
+  opacity: 1;
+}
+.header-action {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.header-action__signin {
+  color: #212832;
+  font-weight: 600;
+  line-height: 2.8rem; /* 175% */
+}
+.header-action__signup {
+  width: 113px;
+  height: 52px;
+}
+/* ========== hero ========== */
+.hero {
+  margin-top: 76px;
+}
+.hero__inner {
+  gap: 160px;
+}
+.hero__content {
+  width: calc(540 / var(--content-width) * 100%);
+}
+.hero__heading {
+  margin-right: 40px;
+}
+.hero__heading .hightlight {
+  color: #7264d6;
+}
+.form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hero__form {
+  margin-top: 40px;
+  border-radius: 8px;
+  background: var(--white-color);
+  box-shadow: 0 16px 42px 0 rgba(0, 0, 0, 0.07);
+  /* height: 74px; */
+
+  padding: 8px 8px 8px 23px;
+}
+.hero__form .input-text {
+  width: 100%;
+  /* padding: 23px; */
+  padding-right: 23px;
+}
+.hero__form:has(:focus) {
+  border: 1px solid #eee;
+}
+.hero-form__email-input {
+  width: 100%;
+  border: none;
+  outline: none; /* ẩn outline hiện khi focus input */
+}
+.hero-form__submit {
+  /* width: 149px;
+  height: 58px; */
+  border-radius: 8px;
+  /* margin-right: 8px; */
+}
+.hero__note {
+  margin-top: 20px;
+  color: #696d76;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 2.4rem; /* 171.429% */
+}
+/* hero__media */
+.hero__media {
+  position: relative;
+  /* hero__card interest w 130px và cách frame 44px */
+  padding-right: calc((130 + 44) * 1px);
+}
+.hero__screen {
+  background: url("../img/hero__img-frame.png");
+  width: 296px;
+  height: 562px;
+  position: relative;
+}
+.hero__card {
+  position: absolute;
+}
+.card-center-hori {
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* phần tai thỏ */
+.card-notch {
+  width: 144px;
+  height: 36px;
+  border-radius: 0 0 18px 18px;
+  background: #3c2f60;
+}
+/* === card credit màu tím === */
+.hero__card-credit {
+  width: 250px;
+  /* height: 150px; */
+  top: 52px;
+  padding: 16px;
+}
+.card-credit {
+  /* height: 150px; */
+  border-radius: 20px;
+  background: linear-gradient(76deg, #8679e4 11.52%, #7264d6 70.78%);
+  color: var(--white-color);
+  overflow: hidden;
+}
+.card-credit__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.card-credit__head,
+.card-credit__body {
+  position: relative;
+  z-index: 2;
+}
+/* card-credit decor */
+.card-credit__decor {
+  position: absolute;
+  /* Thêm z-index một cách có kiểm soát */
+  z-index: 1;
+}
+.card-credit__decor-top {
+  left: 0;
+  top: 0;
+}
+.card-credit__decor-bottom {
+  bottom: 0;
+  right: 0;
+}
+.card-credit__decor svg {
+  display: block; /* bỏ khoảng trống inline */
+  overflow: hidden; /* cắt phần vượt ra ngoài viewBox */
+}
+.card-credit__body {
+  display: flex;
+}
+.hero__card-credit .card-credit__body {
+  margin-top: 32px;
+  gap: 12px;
+}
+.card-credit__main-balance,
+.card-credit__valid,
+.card-credit__holder {
+  /* display: flex; flex-direction: column; */
+  display: grid;
+  row-gap: 5px;
+  /* đè lên decor */
+  /* position: relative;  */
+}
+.main-balance__title {
+  font-weight: 400;
+}
+.hero__card-credit .main-balance__title {
+  font-size: 1.4rem;
+}
+.main-balance__value {
+  font-weight: 700;
+}
+.hero__card-credit .main-balance__value {
+  margin-top: -3px;
+  font-size: 2.2rem;
+}
+.card-credit__title {
+  font-weight: 700;
+}
+.card-credit__title {
+  font-weight: 400;
+}
+.hero__card-credit .card-credit__title {
+  font-size: 1rem;
+}
+.card-credit__valid-date,
+.card-credit__holder-name {
+  font-weight: 600;
+}
+.hero__card-credit .card-credit__valid-date,
+.hero__card-credit .card-credit__holder-name {
+  font-size: 1.2rem;
+}
+/* === card deposite === */
+.card-deposite {
+  background: var(--white-color);
+  top: 113px;
+  left: -110px;
+  /* padding: 14px 10px; */
+  padding: 9px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.07);
+}
+.card-deposite__icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+}
+.card-deposite__icon svg {
+  width: 100%;
+  height: 100%;
+}
+.card-deposite__desc {
+  color: #31456a;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.4rem; /* 100% */
+  margin-inline: 8px 19px;
+}
+.card-deposite__value {
+  color: #4ab5e3;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.4rem; /* 100% */
+}
+/* === card ỉnterest === */
+.card-interest {
+  width: 130px;
+  height: 130px;
+  background: #da6464;
+  right: 0;
+  top: 127px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--white-color);
+}
+.card-interest__value {
+  font-size: 4.4rem;
+  font-weight: 600;
+}
+.card-interest__desc {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+/* === card funds === */
+.card-funds {
+  width: 124px;
+  /* height: 68px; */
+  height: 58px;
+  border-radius: 10px;
+  /* background: #439f90; */
+  background: rgba(67, 159, 144, 0.96);
+
+  bottom: 61px;
+  /* right: -74px; */
+  /* right: 100px; */
+  right: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 11px;
+  /* padding: 20px 14px; */
+  padding: 15px 14px;
+}
+.card-funds__info {
+  color: var(--white-color);
+}
+.card-funds__value {
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.4rem; /* 100% */
+}
+.card-funds__desc {
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 0.8rem; /* 100% */
+}
+/* hero transaction in hero__img-frame */
+.transection {
+  position: relative;
+  padding: 226px 23px 47px;
+}
+.transection__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.transection__head-title {
+  color: #31456a;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.transection__list {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  margin-top: 28px;
+  row-gap: 28px;
+}
+.card-sendMoney,
+.transection-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  /* margin-top: 28px; */
+}
+/* icon */
+.transection-item__icon,
+.card-sendMoney__icon,
+.card-income__icon {
+  /* tránh icon co lại khi detail bên cạnh quá dài */
+  flex-shrink: 0;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--icon-color); /* đặt màu cho svg */
+  /* opacity: 0.1; */
+  /* background: #4ab5e3;
+   */
+  /* box-shadow:
+    -4px -2px 16px 0 #fff,
+    4px 2px 16px 0 rgba(136, 165, 191, 0.48); */
+}
+/* dùng before tạo nền cho icon */
+.transection-item__icon::before,
+.card-sendMoney__icon::before,
+.card-income__icon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* border-radius: 8px; */
+  /* giảm opacity của nền */
+  opacity: 0.1; /* chỉ nền mờ */
+  background: var(--icon-color); /* bg cũng lấy màu này */
+}
+/* truyền màu cho cả svg và bg */
+.transection-item:nth-child(1) {
+  --icon-color: #4ab5e3;
+}
+.transection-item:nth-child(2) {
+  --icon-color: #da6464;
+}
+.transection-item:nth-child(3) {
+  --icon-color: #439f90;
+}
+.transection-item:nth-child(4) {
+  --icon-color: #7264d6;
+}
+/* detail */
+.transection-item__detail,
+.card-sendMoney__detail {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "transection-item__type transection-item__amount"
+    "transection-item__party transection-item__date";
+  row-gap: 6px;
+}
+.transection-item__type {
+  grid-area: transection-item__type;
+  white-space: nowrap;
+}
+
+.transection-item__party {
+  grid-area: transection-item__party;
+}
+.transection-item__amount {
+  grid-area: transection-item__amount;
+}
+.transection-item__date {
+  grid-area: transection-item__date;
+}
+.transection-item__type,
+.transection-item__amount {
+  color: #212832;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.4rem; /* 100% */
+}
+.transection-item__party,
+.transection-item__date {
+  color: #696d76;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1rem; /* 100% */
+}
+.transection-item__type,
+.transection-item__party {
+  justify-self: start; /* căn trái */
+}
+.transection-item__amount,
+.transection-item__date {
+  justify-self: end; /* căn phải */
+}
+/* ========== work ========== */
+.work__inner {
+  /* từ rìa phải nền xanh của media tới rìa trái content */
+  gap: 230px;
+}
+.work-content {
+}
+.work-media {
+  /* width: 456px; */
+  width: 470px;
+  height: 619px;
+  position: relative;
+}
+/* .work-media::before{
+  content: url("../img/work-media__bg.png");
+} */
+.work-media__background {
+  position: absolute;
+  bottom: 0;
+  /* top: 69px; */
+  left: 0;
+
+  width: 470px;
+  height: 550px;
+}
+/* SVG cao 546px nhưng container .work-media cao 619px  
+→ SVG không đủ chiều cao để chạm đáy, nên dù bottom: 0 thì vẫn bị hở. */
+/* Ép SVG cao bằng container */
+.work-media__background svg {
+  /* width: 470px;
+  height: 550px; */
+  /* display: block; */
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+.work-media__thumb {
+  /* width: 100%; */
+  width: 456px;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  left: 7px;
+  z-index: 1;
+  display: block;
+}
+.work-media__icon {
+  position: absolute;
+  top: 76px;
+  right: 55px;
+  z-index: 1;
+}
+.work-media__card {
+  background-color: var(--white-color);
+  position: absolute;
+  /* right: 107px; */
+  right: -100px;
+  bottom: 96px;
+  display: flex;
+  padding: 15px;
+  z-index: 1;
+  gap: 10px;
+  border-radius: 8px;
+  background: #fffdfa;
+  box-shadow: 0 14px 34px 0 rgba(0, 0, 0, 0.07);
+}
+.work-media__card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  background-color: #4ab5e3;
+  border-radius: 6px;
+}
+.circle {
+  background-color: #fff;
+  /* width: 20px;
+  height: 20px; */
+  /* padding: 10px; */
+  padding: calc(((20 - 8) / 2) * 1px) calc(((20 - 11) / 2) * 1px);
+  border-radius: 50%;
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.work-media__card-content {
+  display: flex;
+  flex-direction: column;
+  font-family: Inter;
+  line-height: normal;
+}
+.work-media__card-title {
+  color: #212832;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.work-media__card-desc {
+  color: #696d76;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-top: 5px;
+}
+.work__list {
+  margin-top: 70px;
+  display: grid;
+  row-gap: 30px;
+}
+
+.work-item__heading {
+  /* Khi gặp thẻ .work-item__heading sẽ tăng giá trị biến work-item__heading */
+  counter-increment: work-item__heading;
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 3.2rem; /* 145.455% */
+}
+.work-item__heading::before {
+  content: counter(work-item__heading) ". ";
+}
+.work-item__desc {
+  margin-top: 16px;
+}
+/* ========== feature ========== */
+.feature-list {
+  margin-top: 28px;
+}
+.feature-item + .feature-item {
+  margin-top: 18px;
+}
+.feature-item__heading {
+  position: relative;
+  padding-left: 24px;
+}
+.feature-item__heading::before {
+  position: absolute;
+  display: inline-block;
+  content: "";
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background-color: #7264d6;
+  border-radius: 50%;
+  /* <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+  <circle cx="6" cy="6" r="6" fill="#7264D6"/>
+</svg> */
+}
+.feature-btn {
+  margin-top: 38px;
+}
+.feature-top__media {
+  margin-block: 38px 37px;
+  padding: 48px 88px 55px 0px;
+  position: relative;
+  width: 570px;
+  height: 425px;
+}
+.feature__card {
+  position: absolute;
+}
+.feature__card-credit {
+  right: 88px;
+  top: 48px;
+  width: 482px;
+  padding: 38px;
+}
+
+.feature__card-credit .main-balance__title {
+  font-size: 2.4rem;
+}
+.feature__card-credit .main-balance__value {
+  margin-top: 5px;
+  font-size: 3.2rem;
+}
+.feature__card-credit .card-credit__title {
+  font-size: 2rem;
+}
+.feature__card-credit .card-credit__valid-date,
+.feature__card-credit .card-credit__holder-name {
+  font-size: 2.2rem;
+}
+.feature__card-credit .card-credit__body {
+  margin-top: 98px;
+  gap: 26px;
+}
+/* send money card */
+.card-sendMoney,
+.card-income {
+  z-index: 1;
+}
+.card-sendMoney {
+  font-family: Inter;
+  background-color: var(--white-color);
+  /* background-color: #da6464; */
+  right: 0;
+  top: 0;
+  width: 276px;
+  /* height: 86px; */
+  padding: 23px 13px;
+  border-radius: 12px;
+  box-shadow: 0 14px 38px 0 rgba(0, 0, 0, 0.07);
+}
+.card-sendMoney__icon {
+  --icon-color: #da6464;
+}
+.card-sendMoney .transection-item__type {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.card-sendMoney .transection-item__amount {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+/* card income */
+.card-income {
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+  background: #439f90;
+  /* background: transparent; */
+  padding: 14px 15px 15px;
+  /* right: 88px; */
+  right: 0;
+  /* bottom: -55px; */
+  bottom: 0;
+  color: var(--white-color);
+}
+.card-income__icon {
+  /* --icon-color: #439f90; */
+  color: #439f90;
+  width: 30px;
+  height: 30px;
+  background-color: var(--white-color);
+}
+.card-income__icon::before {
+  /* background: #439f90; */
+  /* background: #fff; */
+}
+
+.card-income__title {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-top: 14px;
+}
+.card-income__amount {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-top: 6px;
+}
+/* feature bottom */
+.feature-bottom__inner {
+  flex-direction: row-reverse;
+}
+.feature-bottom__media {
+  width: 570px;
+  position: relative;
+  padding-right: 100px;
+}
+.feature-bottom__media-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 470px;
+  height: 432px;
+}
+.feature-bottom__media-bg svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.feature-bottom__media-thumb {
+  display: block;
+  width: 413px;
+  /* height: 600px; */
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  left: 29px;
+  z-index: 1;
+}
+.card-paymentMethod {
+  bottom: 57px;
+  left: 263px;
+  background-color: var(--white-color);
+  filter: drop-shadow(0 44px 48px rgba(0, 0, 0, 0.1));
+  width: 281px;
+  height: 220px;
+  z-index: 1;
+  padding: 28px;
+  border-radius: 10px;
+}
+.card-paymentMethod__title {
+  color: #212832;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 3rem; /* 166.667% */
+}
+.paymentMethod__list {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.paymentMethod__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 63px;
+  height: 48px;
+  border-radius: 4px;
+  background: #f2f2fa;
+}
+.paymentMethod__item:last-of-type {
+  background: #f9ea63;
+}
+/* feature__card card-decor */
+
+.card-decor {
+  z-index: 1;
+  right: 0;
+  bottom: 240px;
+  width: 90px;
+  height: 90px;
+  border-radius: 90px;
+  background: #7264d6;
+  box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* ========== testimonial ========== */
+.testimonial__head {
+  text-align: center;
+  margin: 0 auto;
+  width: 435px;
+}
+.testimonial__desc {
+}
+.testimonial__list {
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 30px; */
+  /* dùng flex để trượt */
+  display: flex;
+  justify-content: space-between;
+  /* gap: 30px; */
+  text-align: center;
+  margin-top: 70px;
+}
+.testimonial-item:nth-of-type(2n) {
+  margin-left: 30px;
+}
+.testimonial-item:hover .testimonial-item__feedback-bg {
+  filter: drop-shadow(0 22px 54px rgba(0, 0, 0, 0.07));
+  stroke-width: 0px;
+}
+.testimonial-item__feedback {
+  position: relative;
+}
+.testimonial-item__feedback-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  stroke-width: 1px;
+  stroke: #dfe2e8;
+  transition:
+    filter 0.5s,
+    stroke-width 0.5s;
+}
+
+.testimonial-item__feedback-info {
+  position: relative;
+  z-index: 1;
+  padding: 42px 28px 102px;
+  color: #696d76;
+  font-size: 2.2rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 3.4rem; /* 154.545% */
+}
+.testimonial__client-info {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.testimonial__client-wrap {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  border-radius: 52px;
+  overflow: hidden;
+  z-index: 1;
+}
+.testimonial__client-wrap::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+.client-img {
+  /* vì các img có height khác nhau nên ko dùng mtop đẩy xuống
+  , dùng absolute rồi set bottom 0*/
+  /* position: relative */
+  /* margin-top: 7px; */
+
+  position: absolute;
+  display: block;
+  width: 100%;
+  border-radius: inherit;
+  bottom: 0;
+}
+.testimonial-item:nth-of-type(1) .testimonial__client-wrap::before {
+  background: #4ab5e3;
+}
+.testimonial-item:nth-of-type(2) .testimonial__client-wrap::before {
+  background: #439f90;
+}
+.testimonial__client-name {
+  color: #070052;
+  font-size: 2.6rem;
+  font-weight: 600;
+  line-height: 3.6rem; /* 138.462% */
+  margin-block: 20px 2px;
+}
+.testimonial__client-title {
+  color: #696d76;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 3rem; /* 166.667% */
+}
+.testimonial__slides {
+  margin-top: 38px;
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
+}
+.testimonial__slide-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background-color: var(--white-color);
+  border-radius: 50%;
+  border: 1px solid #575f66;
+  color: #575f66;
+  transition:
+    background-color 0.5s,
+    color 0.5s;
+}
+.testimonial__slide-btn:hover {
+  background-color: #7264d6;
+  color: var(--white-color);
+}
+/* ========== blog ========== */
+.blog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.blog-head__content {
+  width: 435px;
+}
+.blog-list {
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+.blog-item {
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  border-radius: 12px;
+  border: 1px solid #dfe2e8;
+  background-color: #fff;
+  transition:
+    box-shadow 0.5s,
+    border 0.5s;
+}
+.blog-item:hover {
+  box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.07);
+  border: none;
+}
+.blog-item__detail {
+  padding-block: 10px;
+}
+.blog-item__date {
+  color: #696d76;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 2.4rem; /* 171.429% */
+}
+.blog-item__heading {
+  margin-block: 10px 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* đảm bảo dấu ... hiển thị đúng sau từ cuối cùng */
+  text-overflow: ellipsis;
+
+  /* tránh cắt giữa từ */
+  /* giữ nguyên từ, không cắt giữa chừng (đặc biệt hữu ích với tiếng Anh) */
+  word-break: keep-all;
+  /* cho phép xuống dòng nếu từ quá dài, nhưng vẫn ưu tiên giữ nguyên từ */
+  overflow-wrap: break-word;
+}
+.blog-item__link {
+  color: #7264d6;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.6rem; /* 162.5% */
+}
+.blog-item__thumb {
+  width: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+/* ========== download ========== */
+.download {
+}
+.download__content {
+  border-radius: 24px;
+  background: #7264d6;
+  /* padding: 49px 112px; */
+  /* margin: 49px 11px; */
+  position: relative;
+  height: 466px;
+  padding-block: 100px;
+  margin-inline: auto;
+  /* width: 435px; */
+  /* color: var(--white-color); */
+}
+.download__decor {
+  position: absolute;
+}
+.download__decor-topleft {
+  /* top: 0;
+  left: 0; */
+  top: 49px;
+  left: 112px;
+  /* right: -119px; */
+}
+.download__decor-topright {
+  /* top: 0;
+  right: 0; */
+  top: 49px;
+  right: 112px;
+}
+.download__decor-bottomleft {
+  /* bottom: 0;
+  left: 54px; */
+  bottom: 49px;
+  left: 166px;
+}
+.download__decor-bottomright {
+  bottom: 49px;
+  right: 166px;
+}
+/* ghi đè lên các css trước cho các item kế thừa */
+.download__detail * {
+  /* color: var(--white-color); */
+  color: #fff;
+}
+.download__detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 435px;
+  margin-inline: auto;
+  /* padding-block: 100px;
+  margin-inline: auto;
+  width: 435px; */
+  text-align: center;
+}
+.download__label::before {
+  background: #fff;
+}
+.download__desc {
+  font-size: 1.6rem;
+  line-height: 2.8rem;
+}
+.download__options {
+  margin-top: 38px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+.download__option {
+  border-radius: 6px;
+  background: #fff;
+  width: 182px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* ========== footer ========== */
+/* social */
+.social {
+  margin-top: 100px;
+  padding-top: 100px;
+  background: #fafbff;
+}
+.social__inner {
+  display: flex;
+  gap: 162px;
+}
+.social-list {
+  display: flex;
+  gap: 163px;
+}
+.social-item__heading {
+  /* margin-bottom: 24px; */
+  margin-bottom: 18px;
+}
+.social__link + .social__link {
+  /* margin-top: 12px; */
+}
+.social__link {
+}
+.social__link {
+  color: #6a6e78;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 3rem; /* 166.667% */
+  display: inline-block;
+  padding-block: 6px;
+}
+.social-item:last-of-type .social__link {
+  margin-right: 32px;
+}
+.social-item:last-of-type {
+  display: grid;
+  /* row-gap: 48px; */
+  row-gap: 42px;
+}
+.news-heading {
+  margin-bottom: 24px;
+}
+.news-form__email-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #8e919a;
+}
+.news-form .input-text {
+  flex-shrink: 0;
+  width: 270px;
+}
+.news-form .email-label {
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  /* top:0; */
+}
+.news-form__email-input:focus + .news__email-label,
+.news-form__email-input:not(:placeholder-shown) + .news__email-label {
+  top: 0;
+}
+
+.news-form {
+  height: 52px;
+  gap: 20px;
+}
+.news-form__submit {
+  border-radius: 6px;
+}
+
+.contact {
+  margin-block: 48px 28px;
+}
+.contact__list {
+  margin-top: 18px;
+  display: flex;
+  gap: 100px;
+}
+.contact__title {
+  color: #333;
+  font-weight: 600;
+}
+.contact__info {
+  color: #6a6e78;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 3rem; /* 166.667% */
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+.copy-right {
+  background: #7264d6;
+  padding-block: 28px;
+  display: flex;
+}
+.copy-right__title {
+  margin-inline: auto;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.8rem; /* 175% */
+}
