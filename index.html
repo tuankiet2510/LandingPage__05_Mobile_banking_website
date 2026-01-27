@@ -114,7 +114,14 @@
       </div>
     </header>
     <!-- mobile-header -->
-    <header class="mobile-header"></header>
+    <header class="mobile-header">
+      <!-- todo -->
+    </header>
+    <!-- dùng iframe nhúng auth.html vào popup -->
+    <div class="auth-modal hidden">
+      <div class="auth-overlay"></div>
+      <div class="auth-container"><iframe src="auth.html" frameborder="0" class="auth-frame"></iframe></div>
+    </div>
     <!-- ============ hero ============ -->
     <section class="hero">
       <div class="section-wrapper">
@@ -1791,6 +1798,6 @@ Thêm preserveAspectRatio="none" để cho phép giãn theo khung mới -->
     <script>
       AOS.init();
     </script>
-    <script src="main.js" type="module "></script>
+    <script src="./script/main.js" type="module"></script>
   </body>
 </html>

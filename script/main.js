@@ -1,3 +1,5 @@
+import { initAuthModal } from "./modal_auth.js";
+initAuthModal();
 assignSignto_transectionItemAmount__Value();
 
 export function assignSignto_transectionItemAmount__Value() {

@@ -132,6 +132,10 @@ button {
   /* padding: 15px 30px; */
   white-space: nowrap;
 }
+.btn:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
 .btn--small {
   padding: 12px 18px;
 }
@@ -249,6 +253,39 @@ button {
   width: 113px;
   height: 52px;
 }
+
+/* ============= auth modal*/
+/* iframe auth pop up */
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.auth-modal.hidden {
+  display: none;
+}
+
+.auth-container {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 800px;
+  width: 100%;
+  height: 600px;
+  position: relative;
+}
+
+.auth-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+/* end ifram modal */
 /* ========== hero ========== */
 .hero {
   margin-top: 76px;
